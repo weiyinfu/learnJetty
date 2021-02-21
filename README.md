@@ -9,3 +9,29 @@ jetty中的设计思想就是：一切皆Handler，各种Handler的花式嵌套�
 * HandlerCollection：handler集合，按顺序遍历handler
 * HandlerList：按顺序遍历handler直到handled
 * HandlerWrapper：包裹Handler，像面向切片编程一样
+
+jetty的maven插件
+```xml
+ <plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>${jetty-version}</version>
+    <configuration>
+        <webAppConfig>
+            <contextPath>/</contextPath>
+            <defaultsDescriptor>jettyCustom.xml</defaultsDescriptor>
+        </webAppConfig>
+        <scanIntervalSeconds>2</scanIntervalSeconds>
+        <httpConnector>
+            <port>80</port>
+        </httpConnector>
+        <contextHandlers>
+            <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                <resourceBase>C:\Users\weidiao\Desktop\趣题\ADB界面\src\main\webapp</resourceBase>
+                <contextPath>/</contextPath>
+                <defaultsDescriptor>jettyCustom.xml</defaultsDescriptor>
+            </contextHandler>
+        </contextHandlers>
+    </configuration>
+</plugin>
+```
